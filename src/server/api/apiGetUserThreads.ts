@@ -10,7 +10,7 @@ export function apiGetUserThreads(app: Application) {
 
     app.route('/apiv1/threads').get((req: Request, res: Response) => {
 
-        const participantId = parseInt(<string>req.headers['userid']);
+        const participantId = parseInt('1'); // for now lets make user 1 the default one
 
         const threadsPerUser = findDbThreadsPerUser(participantId);
 
