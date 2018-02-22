@@ -1,8 +1,11 @@
 <div>
 
-  <p>Hello user
-    <span>{{userName}}</span>
-  </p>
+  <h3>Hello user
+    <span>{{userName$ | async}}</span>
+    You have
+    <span>{{unreadMessages$ | async}}</span>
+    unread messages
+  </h3>
 
   <thread-list></thread-list>
 </div>
