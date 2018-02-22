@@ -13,16 +13,22 @@ import { LoadUserThreadAction } from '../store/actions';
 })
 export class ThreadSectionComponent implements OnInit {
 
+  userName: string;
+
   constructor(private threadService: ThreadsService,
     private store: Store<ApplicationState>) { }
 
   ngOnInit() {
-
-    this.store.subscribe(e => console.log('Reciving data on the thread section', e));
-
+    // dispatch the action then its ready
     this.threadService.loadUserThreads()
       .subscribe(allUserData => this.store
         .dispatch(new LoadUserThreadAction(allUserData)));
+
+
+    this.store.subscribe((state: ApplicationState) => {
+      this.userName = state.dataState.participants[state.uiState.userId].name;
+    });
+
   }
 
 }
