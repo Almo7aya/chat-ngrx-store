@@ -1,17 +1,29 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand">ChatWith ngrx/store</a>
+    </div>
+  </nav>
 
-  <h1 style=' text-align: center; '>This is a test for the store concept with
-    <mark>@ngrx/store</mark>
-  </h1>
 
-  <hr />
+  <div class="container">
+    <div class="row">
 
+      <div [ngStyle]='{background: "gray"}' class="col col-md-5">
 
-  <user-selection></user-selection>
+        <user-selection></user-selection>
+        <thread-section></thread-section>
 
-  <thread-section></thread-section>
+      </div>
 
-  <message-section></message-section>
+      <div class="col col-md-7" [ngStyle]='{background: "red"}'>
+
+        <message-section></message-section>
+
+      </div>
+
+    </div>
+  </div>
 
 </div>
