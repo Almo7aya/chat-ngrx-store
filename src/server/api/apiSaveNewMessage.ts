@@ -1,11 +1,11 @@
 
 
 
-import {Application} from 'express';
+import { Application } from 'express';
 import * as _ from 'lodash';
-import {Message} from "../../../shared/model/message";
-import {dbMessages, dbMessagesQueuePerUser} from "../db-data";
-import {findThreadById} from "../persistence/findThreadById";
+import { Message } from "../../../shared/model/message";
+import { dbMessages, dbMessagesQueuePerUser } from "../db-data";
+import { findThreadById } from "../persistence/findThreadById";
 
 
 let messageIdCounter = 20;
@@ -14,12 +14,12 @@ let messageIdCounter = 20;
 
 export function apiSaveNewMessage(app: Application) {
 
-    app.route('/api/threads/:id').post((req, res) => {
+    app.route('/apiv1/threads/:id').post((req, res) => {
 
         const payload = req.body;
 
         const threadId = parseInt(req.params.id),
-            participantId = parseInt(req.headers['userid']);
+            participantId = parseInt(<string>req.headers['userid']);
 
         const message: Message = {
             id: messageIdCounter++,

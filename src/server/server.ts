@@ -1,11 +1,11 @@
 
 
 import * as express from 'express';
-import {Application} from 'express';
-import {apiGetUserThreads} from "./api/apiGetUserThreads";
-import {apiSaveNewMessage} from "./api/apiSaveNewMessage";
-import {apiMessageNotificationsPerUser} from "./api/apiMessageNotificationsPerUser";
-import {apiUpdateThread} from "./api/apiMarkThreadAsReadByUser";
+import { Application } from 'express';
+import { apiGetUserThreads } from "./api/apiGetUserThreads";
+import { apiSaveNewMessage } from "./api/apiSaveNewMessage";
+import { apiMessageNotificationsPerUser } from "./api/apiMessageNotificationsPerUser";
+import { apiUpdateThread } from "./api/apiMarkThreadAsReadByUser";
 const bodyParser = require('body-parser');
 
 const app: Application = express();
@@ -19,6 +19,6 @@ apiMessageNotificationsPerUser(app);
 apiUpdateThread(app);
 
 
-app.listen(8090, () => {
+app.listen(8000, () => {
     console.log('Server is now running on port 8090 ...');
 });
