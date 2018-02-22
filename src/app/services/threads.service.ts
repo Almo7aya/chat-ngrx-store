@@ -11,7 +11,7 @@ export class ThreadsService {
 
 
   loadUserThreads(): Observable<AllUserData> {
-    return this.http.get('/apiv1/')
+    return this.http.get('/apiv1/threads')
       .map((res: Response) => res.json());
   }
 
