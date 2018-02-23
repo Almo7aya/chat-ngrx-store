@@ -5,4 +5,4 @@
   </p>
 </div>
 
-<thread-list [threadSummarys]='threadSummarys$ | async'></thread-list>
+<thread-list [threadSummarys]='threadSummarys$ | async' (threadSelectedEvent)='onThreadSelected($event)'></thread-list>

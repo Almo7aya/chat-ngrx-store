@@ -5,11 +5,12 @@ import { values, last } from 'lodash';
 
 
 import { ApplicationState } from '../store/application-state';
-import { UserThreadLoadedAction, LoadUserDataAction } from '../store/actions';
+import { UserThreadLoadedAction, LoadUserDataAction, SelectCurrentThreadAction } from '../store/actions';
 import { Observable } from 'rxjs/observable';
 import { ThreadSummaryVM } from './threadSummary.vm';
 import { Thread } from '../../../shared/model/thread';
 import { userNameSelector, unReadMessagesSelector, threadSummarySelector } from './selectors';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'thread-section',
@@ -37,6 +38,17 @@ export class ThreadSectionComponent implements OnInit {
     // This is with mapState to Observale
     this.threadSummarys$ = this.store
       .map(threadSummarySelector);
+  }
+
+
+  onThreadSelected(selectedThreadId: number) {
+
+    if (!environment.production) {
+      console.log('Selected thread id => ', selectedThreadId);
+    }
+
+    this.store.dispatch(new SelectCurrentThreadAction(selectedThreadId));
 
   }
+
 }
