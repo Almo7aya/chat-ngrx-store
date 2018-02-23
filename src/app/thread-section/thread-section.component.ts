@@ -28,7 +28,6 @@ export class ThreadSectionComponent implements OnInit {
 
     this.store.dispatch(new LoadUserDataAction());
 
-
     this.userName$ = this.store
       .map(userNameSelector);
 
