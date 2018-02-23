@@ -10,10 +10,12 @@ import { ApplicationState } from '../store/application-state';
 })
 export class MessageSectionComponent implements OnInit {
 
+  participantNames$: string;
+
   constructor(private store: Store<ApplicationState>) { }
 
   ngOnInit() {
-    // this.store.subscribe(e => console.log(e));
+
   }
 
 }

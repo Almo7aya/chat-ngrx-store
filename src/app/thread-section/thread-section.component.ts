@@ -9,8 +9,8 @@ import { UserThreadLoadedAction, LoadUserDataAction, SelectCurrentThreadAction }
 import { Observable } from 'rxjs/observable';
 import { ThreadSummaryVM } from './threadSummary.vm';
 import { Thread } from '../../../shared/model/thread';
-import { userNameSelector, unReadMessagesSelector, threadSummarySelector } from './selectors';
 import { environment } from '../../environments/environment';
+import { userNameSelector, unReadMessagesSelector, threadSummarySelector } from '../selectors';
 
 @Component({
   selector: 'thread-section',

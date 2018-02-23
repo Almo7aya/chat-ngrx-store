@@ -17,6 +17,7 @@ const uiStateReducer: ActionReducer<UiState> =
         const newUiState = clone<UiState>(state);
         newUiState.currentThreadId = (<SelectCurrentThreadAction>action).payload;
         return newUiState;
+
       default:
         return state;
     }
@@ -26,8 +27,9 @@ const uiStateReducer: ActionReducer<UiState> =
 const dataStateReducer: ActionReducer<DataState> =
   (state: DataState, action: Action): DataState => {
     switch (action.type) {
+
       case USER_THREAD_LOADED_ACTION:
-        const userData = (<UserThreadLoadedAction>action).payload;
+        const { payload: userData } = (<UserThreadLoadedAction>action);
         const newUserDate: DataState = {
           participants: keyBy(userData.participants, 'id'),
           messages: keyBy(userData.messages, 'id'),

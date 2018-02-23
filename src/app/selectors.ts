@@ -1,7 +1,8 @@
-import { ApplicationState } from "../store/application-state";
-import { ThreadSummaryVM } from "./threadSummary.vm";
-import { Thread } from "../../../shared/model/thread";
+
 import { values, last } from "lodash";
+import { ApplicationState } from "./store/application-state";
+import { Thread } from "../../shared/model/thread";
+import { ThreadSummaryVM } from "./thread-section/threadSummary.vm";
 
 export const userNameSelector = (state: ApplicationState): string => {
   const { userId: currentUserId } = state.uiState;
