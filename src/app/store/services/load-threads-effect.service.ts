@@ -13,7 +13,8 @@ export class LoadThreadsEffectService {
 
   @Effect() loadAction$ = this.actions$
     .ofType(LOAD_USER_DATA_ACTION)
+    .debug('LOAD USER DATA ACTION')
     .switchMap(() => this.threadService.loadUserThreads())
+    .debug('LOAD USER THREAD')
     .map(allUserData => new UserThreadLoadedAction(allUserData));
-
 }
