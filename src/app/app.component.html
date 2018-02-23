@@ -8,16 +8,16 @@
 
 
   <div class="container">
-    <div class="row">
+    <div class="row  ">
 
-      <div [ngStyle]='{background: "gray"}' class="col col-md-5">
+      <div class="col col-md-5 threads-container">
 
         <user-selection></user-selection>
         <thread-section></thread-section>
 
       </div>
 
-      <div class="col col-md-7" [ngStyle]='{background: "red"}'>
+      <div class="col offset-md-1 col-md-6 messages-container">
 
         <message-section></message-section>
 

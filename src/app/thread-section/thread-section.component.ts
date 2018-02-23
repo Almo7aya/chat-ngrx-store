@@ -58,17 +58,19 @@ export class ThreadSectionComponent implements OnInit {
     //       .map(participantId => state.dataState.participants[participantId].name);
 
     //     const lastMessageId = last<number>(thread.messageIds);
+    //     const lastMessage = state.dataState.messages[lastMessageId];
 
     //     return {
     //       id: thread.id,
-    //       lastMessage: state.dataState.messages[lastMessageId].text,
-    //       participantNames: names.join(', ')
+    //       lastMessage: lastMessage.text,
+    //       participantNames: names.join(', '),
+    //       timestamp: lastMessage.timestamp
     //     };
     //   });
 
     // });
 
-    this.threadSummarys$.subscribe(console.log);
+    // this.threadSummarys$.subscribe(console.log);
 
   }
 }

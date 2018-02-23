@@ -1,0 +1,21 @@
+:host {
+    color: #010101;
+}
+
+.list-group-item {
+    overflow: hidden;
+    p {
+        margin: 2px 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        &.participantNames {
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+    }
+    span {
+        font-size: .9em;
+        font-weight: 300;
+    }
+}

@@ -26,11 +26,13 @@ export const mapStateToThreadSummary = (state: ApplicationState): ThreadSummaryV
 
 
     const lastMessageId = last<number>(thread.messageIds);
+    const lastMessage = state.dataState.messages[lastMessageId];
 
     return {
       participantNames: names.join(', '),
-      lastMessage: state.dataState.messages[lastMessageId].text,
-      id: thread.id
+      lastMessage: lastMessage.text,
+      id: thread.id,
+      timestamp: lastMessage.timestamp
     }
   });
 

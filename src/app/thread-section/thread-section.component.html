@@ -1,14 +1,8 @@
 <div class="user-data">
-
-  <span>
-    Hello user
-    <h3>{{userName$ | async}}</h3>
-  </span>
-
-  <span>You have
-    <h3>{{unreadMessages$ | async}}</h3> messages
-  </span>
-
+  <p>Hello user
+    <b>{{userName$ | async}}</b> you have unread
+    <b>{{ unreadMessages$ | async }}</b> messages
+  </p>
 </div>
 
-<!-- <thread-list [threadSummarys]='threadSummarys$ | async'></thread-list> -->
+<thread-list [threadSummarys]='threadSummarys$ | async'></thread-list>
