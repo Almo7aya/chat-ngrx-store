@@ -3,10 +3,9 @@ import { Store } from '@ngrx/store';
 
 import { values, last } from 'lodash';
 
-import { ThreadsService } from '../services/threads.service';
 
 import { ApplicationState } from '../store/application-state';
-import { LoadUserThreadAction } from '../store/actions';
+import { UserThreadLoadedAction, LoadUserDataAction } from '../store/actions';
 import { Observable } from 'rxjs/observable';
 import { ThreadSummaryVM } from './threadSummary.vm';
 import { Thread } from '../../../shared/model/thread';
@@ -23,14 +22,11 @@ export class ThreadSectionComponent implements OnInit {
   unreadMessages$: Observable<number>;
   threadSummarys$: Observable<ThreadSummaryVM[]>;
 
-  constructor(private threadService: ThreadsService,
-    private store: Store<ApplicationState>) { }
+  constructor(private store: Store<ApplicationState>) { }
 
   ngOnInit() {
-    // dispatch the action then its ready
-    this.threadService.loadUserThreads()
-      .subscribe(allUserData => this.store
-        .dispatch(new LoadUserThreadAction(allUserData)));
+
+    this.store.dispatch(new LoadUserDataAction());
 
 
     this.userName$ = this.store
