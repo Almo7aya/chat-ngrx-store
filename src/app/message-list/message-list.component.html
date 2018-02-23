@@ -1,3 +1,8 @@
-<p>
-  message-list works!
-</p>
+<ul class="list-group messages-list">
+  <li class="list-group-item" *ngFor='let message of messagesList'>
+    <p class="participantName">{{message.participantName}}
+      <span class="messageText float-right">{{message.timestamp | date :'shortTime'}}</span>
+    </p>
+    <p>{{message.text}}</p>
+  </li>
+</ul>

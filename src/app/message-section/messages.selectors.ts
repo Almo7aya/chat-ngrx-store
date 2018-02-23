@@ -3,6 +3,7 @@ import { values, keys } from "lodash";
 
 import { MessageVM } from "./message.vm";
 import { Participant } from "../../../shared/model/participant";
+import { Message } from "../../../shared/model/message";
 
 
 export const participantNamesSelector =
@@ -24,8 +25,29 @@ export const participantNamesSelector =
   };
 
 
-export const message =
-  (state: ApplicationState): MessageVM => {
+export const messageSelector =
+  (state: ApplicationState): MessageVM[] => {
 
-    return;
+    const { currentThreadId } = state.uiState;
+
+    if (!currentThreadId) {
+      return;
+    }
+
+    const currentTheard = state.dataState.threads[currentThreadId];
+
+    return currentTheard.messageIds.map((messageId): MessageVM => {
+
+      const message: Message = state.dataState.messages[messageId];
+
+      return {
+        id: message.id,
+        timestamp: message.timestamp,
+        text: message.text,
+        participantName: state.dataState.participants[message.participantId].name
+      };
+
+    });
+
+
   }

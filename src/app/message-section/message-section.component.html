@@ -1,1 +1,8 @@
-{{participantNames$ | async}}
+<div class="message-data">
+  <p>
+    <b>{{participantNames$ | async}}</b>
+  </p>
+
+  <message-list [messagesList]='messages$ | async'></message-list>
+
+</div>

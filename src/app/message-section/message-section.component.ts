@@ -5,12 +5,12 @@ import { Observable } from 'rxjs/Observable';
 
 import { ApplicationState } from '../store/application-state';
 import { MessageVM } from './message.vm';
-import { participantNamesSelector } from './messages.selectors';
+import { participantNamesSelector, messageSelector } from './messages.selectors';
 
 @Component({
   selector: 'message-section',
   templateUrl: './message-section.component.html',
-  styleUrls: ['./message-section.component.css']
+  styleUrls: ['./message-section.component.scss']
 })
 export class MessageSectionComponent implements OnInit {
 
@@ -24,6 +24,11 @@ export class MessageSectionComponent implements OnInit {
     this.participantNames$ = this.store
       .select(participantNamesSelector)
       .debug('NAMES =>');
+
+
+    this.messages$ = this.store
+      .select(messageSelector)
+      .debug('MESSAGES => ');
   }
 
 }
