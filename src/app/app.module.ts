@@ -33,8 +33,8 @@ import { LoadThreadsEffectService } from './store/services/load-threads-effect.s
     BrowserModule,
     HttpModule,
     StoreModule.forRoot(mapReducers, { initialState: INITIAL_APPLICATION_STATE }),
-    EffectsModule.forFeature([LoadThreadsEffectService]),
-    StoreDevtoolsModule.instrument()
+    EffectsModule.forRoot([LoadThreadsEffectService]),
+    StoreDevtoolsModule.instrument({ maxAge: 50 })
   ],
   providers: [
     ThreadsService

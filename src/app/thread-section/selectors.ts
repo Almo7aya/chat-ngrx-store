@@ -5,9 +5,11 @@ import { values, last } from "lodash";
 
 export const userNameSelector = (state: ApplicationState): string => {
   const { userId: currentUserId } = state.uiState;
-  if (!currentUserId) {
+  const { participants } = state.dataState;
+  if (!values(participants).length) {
     return '';
   }
+
   return state.dataState.participants[currentUserId].name;
 }
 
