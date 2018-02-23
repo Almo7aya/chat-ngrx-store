@@ -15,9 +15,16 @@ export const mapStateToUnReadMessages = (state: ApplicationState): number => {
 }
 
 
-export const mapStateToThreadSummary = (): ThreadSummaryVM[] => {
+export const mapStateToThreadSummary = (state: ApplicationState): ThreadSummaryVM[] => {
 
+  const thread = values<Thread>(state.dataState.threads);
 
+  return thread.map((thread): ThreadSummaryVM => {
+    return {
+      participantNames: null,
+      lastMessage: null,
+      id: thread.id
+    }
+  });
 
-  return;
 }
