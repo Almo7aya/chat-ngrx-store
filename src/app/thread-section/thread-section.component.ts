@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { values } from 'lodash';
+import { values, last } from 'lodash';
 
 import { ThreadsService } from '../services/threads.service';
 
@@ -42,26 +42,33 @@ export class ThreadSectionComponent implements OnInit {
       .map(mapStateToUnReadMessages);
 
     // This is with mapState to Observale
-    // this.threadSummarys$ = this.store
-    //   .skip(1)
-    //   .map(mapStateToThreadSummary);
-    // this.threadSummarys$.subscribe(console.log);
+    this.threadSummarys$ = this.store
+      .skip(1)
+      .map(mapStateToThreadSummary);
+    this.threadSummarys$.subscribe(console.log);
 
 
-    this.threadSummarys$ = this.store.select(state => {
+    // this.threadSummarys$ = this.store.select(state => {
 
-      const threads = values<Thread>(state.dataState.threads);
+    //   const threads = values<Thread>(state.dataState.threads);
 
-      return threads.map((thread): ThreadSummaryVM => {
-        return {
-          id: thread.id,
-          lastMessage: null,
-          participantNames: null
-        };
-      });
+    //   return threads.map((thread): ThreadSummaryVM => {
 
-    });
+    //     const names: string[] = Object.keys(thread.participants)
+    //       .map(participantId => state.dataState.participants[participantId].name);
 
+    //     const lastMessageId = last<number>(thread.messageIds);
+
+    //     return {
+    //       id: thread.id,
+    //       lastMessage: state.dataState.messages[lastMessageId].text,
+    //       participantNames: names.join(', ')
+    //     };
+    //   });
+
+    // });
+
+    this.threadSummarys$.subscribe(console.log);
 
   }
 }

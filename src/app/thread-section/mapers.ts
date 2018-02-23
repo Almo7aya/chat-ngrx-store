@@ -1,7 +1,7 @@
 import { ApplicationState } from "../store/application-state";
 import { ThreadSummaryVM } from "./threadSummary.vm";
 import { Thread } from "../../../shared/model/thread";
-import { values } from "lodash";
+import { values, last } from "lodash";
 
 export const mapStateToUserName = (state: ApplicationState): string => {
   const { userId: currentUserId } = state.uiState;
@@ -20,9 +20,16 @@ export const mapStateToThreadSummary = (state: ApplicationState): ThreadSummaryV
   const thread = values<Thread>(state.dataState.threads);
 
   return thread.map((thread): ThreadSummaryVM => {
+
+    const names = Object.keys(thread.participants)
+      .map(participantId => state.dataState.participants[participantId].name);
+
+
+    const lastMessageId = last<number>(thread.messageIds);
+
     return {
-      participantNames: null,
-      lastMessage: null,
+      participantNames: names.join(', '),
+      lastMessage: state.dataState.messages[lastMessageId].text,
       id: thread.id
     }
   });
