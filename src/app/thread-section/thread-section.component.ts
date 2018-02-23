@@ -9,8 +9,8 @@ import { ApplicationState } from '../store/application-state';
 import { LoadUserThreadAction } from '../store/actions';
 import { Observable } from 'rxjs/observable';
 import { ThreadSummaryVM } from './threadSummary.vm';
-import { mapStateToUserName, mapStateToUnReadMessages, mapStateToThreadSummary } from './mapers';
 import { Thread } from '../../../shared/model/thread';
+import { userNameSelector, unReadMessagesSelector, threadSummarySelector } from './selectors';
 
 @Component({
   selector: 'thread-section',
@@ -34,43 +34,14 @@ export class ThreadSectionComponent implements OnInit {
 
 
     this.userName$ = this.store
-      .skip(1) // to skip the first init emit
-      .map(mapStateToUserName);
+      .map(userNameSelector);
 
     this.unreadMessages$ = this.store
-      .skip(1)
-      .map(mapStateToUnReadMessages);
+      .map(unReadMessagesSelector);
 
     // This is with mapState to Observale
     this.threadSummarys$ = this.store
-      .skip(1)
-      .map(mapStateToThreadSummary);
-    this.threadSummarys$.subscribe(console.log);
-
-
-    // this.threadSummarys$ = this.store.select(state => {
-
-    //   const threads = values<Thread>(state.dataState.threads);
-
-    //   return threads.map((thread): ThreadSummaryVM => {
-
-    //     const names: string[] = Object.keys(thread.participants)
-    //       .map(participantId => state.dataState.participants[participantId].name);
-
-    //     const lastMessageId = last<number>(thread.messageIds);
-    //     const lastMessage = state.dataState.messages[lastMessageId];
-
-    //     return {
-    //       id: thread.id,
-    //       lastMessage: lastMessage.text,
-    //       participantNames: names.join(', '),
-    //       timestamp: lastMessage.timestamp
-    //     };
-    //   });
-
-    // });
-
-    // this.threadSummarys$.subscribe(console.log);
+      .map(threadSummarySelector);
 
   }
 }
