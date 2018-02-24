@@ -4,12 +4,12 @@
 }
 
 .messages-list {
-    overflow: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
     height: 290px;
 }
 
 .list-group-item {
-    overflow: hidden;
     p {
         margin: 2px 0;
         overflow: hidden;
