@@ -5,4 +5,4 @@
   </p>
 </div>
 
-<app-thread-list [threadSummarys]='threadSummarys$ | async' (threadSelectedEvent)='onThreadSelected($event)'></app-thread-list>
+<app-thread-list [currentThreadId]='currentThreadId$ | async' [threadSummarys]='threadSummarys$ | async' (threadSelectedEvent)='onThreadSelected($event)'></app-thread-list>

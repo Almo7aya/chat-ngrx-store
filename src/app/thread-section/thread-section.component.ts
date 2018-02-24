@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/observable';
 import { ThreadSummaryVM } from './threadSummary.vm';
 import { Thread } from '../../../shared/model/thread';
 import { environment } from '../../environments/environment';
-import { userNameSelector, unReadMessagesSelector, threadSummarySelector } from './threads.selectors';
+import { userNameSelector, unReadMessagesSelector, threadSummarySelector, currentTheadIdSelector } from './threads.selectors';
 
 @Component({
   selector: 'app-thread-section',
@@ -22,6 +22,7 @@ export class ThreadSectionComponent implements OnInit {
   userName$: Observable<string>;
   unreadMessages$: Observable<number>;
   threadSummarys$: Observable<ThreadSummaryVM[]>;
+  currentThreadId$: Observable<number>;
 
   constructor(private store: Store<ApplicationState>) { }
 
@@ -30,16 +31,19 @@ export class ThreadSectionComponent implements OnInit {
     this.store.dispatch(new LoadUserDataAction());
 
     this.userName$ = this.store
-      .map(userNameSelector);
+      .select(userNameSelector);
 
     this.unreadMessages$ = this.store
-      .map(unReadMessagesSelector);
+      .select(unReadMessagesSelector);
 
     // This is with mapState to Observale
     this.threadSummarys$ = this.store
-      .map(threadSummarySelector);
-  }
+      .select(threadSummarySelector);
 
+    this.currentThreadId$ = this.store
+      .select(currentTheadIdSelector);
+
+  }
 
   onThreadSelected(selectedThreadId: number) {
 

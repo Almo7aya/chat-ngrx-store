@@ -9,6 +9,9 @@
 }
 
 .list-group-item {
+    &.active {
+        background-color: #163333;
+    }
     p {
         margin: 2px 0;
         overflow: hidden;
