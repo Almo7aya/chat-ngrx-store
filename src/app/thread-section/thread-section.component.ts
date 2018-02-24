@@ -28,7 +28,7 @@ export class ThreadSectionComponent implements OnInit {
 
   ngOnInit() {
 
-    this.store.dispatch(new LoadUserDataAction());
+    // this.store.dispatch(new LoadUserDataAction());
 
     this.userName$ = this.store
       .select(userNameSelector);

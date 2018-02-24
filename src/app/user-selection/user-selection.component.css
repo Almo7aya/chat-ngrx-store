@@ -1,0 +1,10 @@
+.flex {
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.flex label {
+    white-space: nowrap;
+    margin-right: 5px;
+}

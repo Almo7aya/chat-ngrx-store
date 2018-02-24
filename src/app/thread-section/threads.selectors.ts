@@ -8,7 +8,7 @@ import { Thread } from '../../../shared/model/thread';
 export const userNameSelector = (state: ApplicationState): string => {
   const { userId: currentUserId } = state.uiState;
   const { participants } = state.dataState;
-  if (!values(participants).length) {
+  if (!values(participants).length || !currentUserId) {
     return '';
   }
   return state.dataState.participants[currentUserId].name;
