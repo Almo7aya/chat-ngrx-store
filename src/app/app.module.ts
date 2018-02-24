@@ -18,6 +18,7 @@ import { UiState } from './store/ui-state';
 import { DataState } from './store/data-state';
 import { mapReducers } from './store/reducers';
 import { LoadThreadsEffectService } from './store/services/load-threads-effect.service';
+import { ScrollToBottomDirective } from './directives/scroll-to-bottom.directive';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { LoadThreadsEffectService } from './store/services/load-threads-effect.s
     MessageSectionComponent,
     ThreadListComponent,
     MessageListComponent,
+    ScrollToBottomDirective
   ],
   imports: [
     BrowserModule,
