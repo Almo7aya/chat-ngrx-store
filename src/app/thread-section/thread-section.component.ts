@@ -13,7 +13,7 @@ import { environment } from '../../environments/environment';
 import { userNameSelector, unReadMessagesSelector, threadSummarySelector } from './threads.selectors';
 
 @Component({
-  selector: 'thread-section',
+  selector: 'app-thread-section',
   templateUrl: './thread-section.component.html',
   styleUrls: ['./thread-section.component.scss']
 })

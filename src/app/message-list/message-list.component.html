@@ -1,8 +1,9 @@
-<ul class="list-group messages-list">
+<ul appScrollToBottom class="list-group messages-list" *ngIf='messagesList'>
   <li class="list-group-item" *ngFor='let message of messagesList'>
     <p class="participantName">{{message.participantName}}
       <span class="messageText float-right">{{message.timestamp | date :'shortTime'}}</span>
     </p>
     <p>{{message.text}}</p>
   </li>
+
 </ul>

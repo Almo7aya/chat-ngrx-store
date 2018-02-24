@@ -8,7 +8,7 @@ import { MessageVM } from './message.vm';
 import { participantNamesSelector, messageSelector } from './messages.selectors';
 
 @Component({
-  selector: 'message-section',
+  selector: 'app-message-section',
   templateUrl: './message-section.component.html',
   styleUrls: ['./message-section.component.scss']
 })

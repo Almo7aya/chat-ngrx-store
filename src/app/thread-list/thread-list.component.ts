@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, HostBinding, EventEmitter } from '@an
 import { ThreadSummaryVM } from '../thread-section/threadSummary.vm';
 
 @Component({
-  selector: 'thread-list',
+  selector: 'app-thread-list',
   templateUrl: './thread-list.component.html',
   styleUrls: ['./thread-list.component.scss']
 })

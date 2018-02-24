@@ -3,6 +3,13 @@
     <b>{{participantNames$ | async}}</b>
   </p>
 
-  <message-list [messagesList]='messages$ | async'></message-list>
+  <div *ngIf='(messages$ | async) as messagesList'>
+
+    <app-message-list [messagesList]='messagesList'></app-message-list>
+
+    <textarea class='message-box form-control' name="message-box"></textarea>
+
+  </div>
+
 
 </div>

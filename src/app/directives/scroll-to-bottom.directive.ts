@@ -1,16 +1,15 @@
-import { Directive, ElementRef, OnInit } from '@angular/core';
+import { Directive, ElementRef, AfterViewChecked } from '@angular/core';
 
 @Directive({
   selector: '[appScrollToBottom]'
 })
-export class ScrollToBottomDirective implements OnInit {
+export class ScrollToBottomDirective implements AfterViewChecked {
 
 
   constructor(private element: ElementRef) { }
 
-
-  ngOnInit() {
-    console.log(this.element);
+  ngAfterViewChecked() {
+    (<HTMLUListElement>this.element.nativeElement).scrollTo(0, 999999);
   }
 
 }

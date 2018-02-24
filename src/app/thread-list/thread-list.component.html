@@ -1,4 +1,4 @@
-<ul class="list-group">
+<ul appScrollToBottom class="list-group">
   <li (click)="threadSelectedEvent.emit(thread.id)" class="list-group-item" *ngFor='let thread of threadSummarys'>
     <p class="participantNames">
       {{thread.participantNames}}
