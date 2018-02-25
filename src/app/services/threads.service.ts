@@ -16,7 +16,7 @@ export class ThreadsService {
     }
     return this.http.get('/apiv1/threads',
 
-      { headers: { 'USERID': userId } })
+      { headers: { USERID: userId } })
 
       .map((res: Response) => res.json());
   }
