@@ -21,6 +21,7 @@ const uiStateReducer: ActionReducer<UiState> =
 
       case SELECT_CURRENT_USER_ACTION:
         const newUiStateUser = clone<UiState>(state);
+        newUiStateUser.currentThreadId = undefined;
         newUiStateUser.userId = ((<SelectCurrenUserAction>action).payload);
         return newUiStateUser;
 

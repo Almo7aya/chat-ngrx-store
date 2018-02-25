@@ -1,9 +1,9 @@
-import { ApplicationState } from "../store/application-state";
-import { values, keys } from "lodash";
+import { ApplicationState } from '../store/application-state';
+import { values, keys } from 'lodash';
 
-import { MessageVM } from "./message.vm";
-import { Participant } from "../../../shared/model/participant";
-import { Message } from "../../../shared/model/message";
+import { MessageVM } from './message.vm';
+import { Participant } from '../../../shared/model/participant';
+import { Message } from '../../../shared/model/message';
 
 
 export const participantNamesSelector =
@@ -16,6 +16,10 @@ export const participantNamesSelector =
     }
 
     const currentTheard = state.dataState.threads[currentThreadId];
+
+    if (!currentTheard) {
+      return;
+    }
 
     return keys(currentTheard.participants)
       .map((participantId): string => {
@@ -36,6 +40,10 @@ export const messageSelector =
 
     const currentTheard = state.dataState.threads[currentThreadId];
 
+    if (!currentTheard) {
+      return;
+    }
+
     return currentTheard.messageIds.map((messageId): MessageVM => {
 
       const message: Message = state.dataState.messages[messageId];
@@ -50,4 +58,4 @@ export const messageSelector =
     });
 
 
-  }
+  };

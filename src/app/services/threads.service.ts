@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { AllUserData } from '../../../shared/to/all-user-data';
 import { INITIAL_DATA_STATE } from '../store/data-state';
@@ -14,10 +14,12 @@ export class ThreadsService {
     if (!userId) {
       return Observable.of(<AllUserData>INITIAL_DATA_STATE);
     }
-    return this.http.get('/apiv1/threads',
 
-      { headers: { USERID: userId } })
+    const headers = new Headers();
 
+    headers.append('userid', userId.toString());
+
+    return this.http.get('/apiv1/threads', { headers })
       .map((res: Response) => res.json());
   }
 
