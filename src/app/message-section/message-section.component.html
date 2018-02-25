@@ -7,7 +7,7 @@
 
     <app-message-list [messagesList]='messagesList'></app-message-list>
 
-    <textarea class='message-box form-control' name="message-box"></textarea>
+    <textarea class='message-box form-control' name="message-box" (keyup)='onNewMessage($event)'></textarea>
 
   </div>
 

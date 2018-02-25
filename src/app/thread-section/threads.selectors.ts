@@ -11,7 +11,15 @@ export const userNameSelector = (state: ApplicationState): string => {
   if (!values(participants).length || !currentUserId) {
     return '';
   }
-  return state.dataState.participants[currentUserId].name;
+
+  const participant = state.dataState.participants[currentUserId];
+
+  if (!participant) {
+    return;
+  }
+
+  return participant.name;
+
 };
 
 export const unReadMessagesSelector = (state: ApplicationState): number => {

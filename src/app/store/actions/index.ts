@@ -29,3 +29,15 @@ export class SelectCurrenUserAction implements Action {
   readonly type = SELECT_CURRENT_USER_ACTION;
   constructor(public payload: number) { }
 }
+
+
+export interface MessageToBeSend {
+  text: string;
+  threadId: number;
+  participantId: number;
+}
+export const SEND_NEW_MESSAGE_ACTION = 'SEND_NEW_MESSAGE_ACTION';
+export class SendNewMessageAction implements Action {
+  readonly type = SEND_NEW_MESSAGE_ACTION;
+  constructor(public payload: MessageToBeSend) { }
+}

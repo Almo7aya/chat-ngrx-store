@@ -1,6 +1,6 @@
-import { Participant } from "../../../shared/model/participant";
-import { Thread } from "../../../shared/model/thread";
-import { Message } from "../../../shared/model/message";
+import { Participant } from '../../../shared/model/participant';
+import { Thread } from '../../../shared/model/thread';
+import { Message } from '../../../shared/model/message';
 
 export interface DataState {
   participants: { [key: number]: Participant };
@@ -12,4 +12,4 @@ export const INITIAL_DATA_STATE: DataState = {
   participants: {},
   threads: {},
   messages: {}
-}
+};
