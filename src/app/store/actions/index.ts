@@ -46,5 +46,5 @@ export class SendNewMessageAction implements Action {
 export const NEW_MESSAGES_RECEIVED_ACTION = 'NEW_MESSAGES_RECEIVED_ACTION';
 export class NewMessagesReceiveAction implements Action {
   readonly type = NEW_MESSAGES_RECEIVED_ACTION;
-  constructor(private payload: Message[]) { }
+  constructor(private payload: Message[] = []) { }
 }
