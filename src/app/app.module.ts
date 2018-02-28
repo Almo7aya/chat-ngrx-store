@@ -20,6 +20,7 @@ import { mapReducers } from './store/reducers';
 import { LoadThreadsEffectService } from './store/services/load-threads-effect.service';
 import { ScrollToBottomDirective } from './directives/scroll-to-bottom.directive';
 import { WriteNewMessageEffectService } from './store/services/write-new-message-effect.service';
+import { ServerNotifactionEffectService } from './store/services/server-notifaction-effect.service';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { WriteNewMessageEffectService } from './store/services/write-new-message
     BrowserModule,
     HttpModule,
     StoreModule.forRoot(mapReducers, { initialState: INITIAL_APPLICATION_STATE }),
-    EffectsModule.forRoot([LoadThreadsEffectService, WriteNewMessageEffectService]),
+    EffectsModule.forRoot([LoadThreadsEffectService, WriteNewMessageEffectService, ServerNotifactionEffectService]),
     StoreDevtoolsModule.instrument({ maxAge: 50 })
   ],
   providers: [
