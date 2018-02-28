@@ -26,7 +26,10 @@ export class ThreadsService {
     return this.http.post(`/apiv1/threads/${newMessage.threadId}`, JSON.stringify({
       text: newMessage.text
     }), { headers: commonHttpHeaders(newMessage.participantId) });
+  }
 
+  loadNewMessagesForUser(): Observable<Message[]> {
+    return;
   }
 
 }

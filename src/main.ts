@@ -9,6 +9,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 
 import 'rxjs/add/observable/of';
+import 'rxjs/add/observable/interval';
 
 import './app/helpers/debug-observable';
 

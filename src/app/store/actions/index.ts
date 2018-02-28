@@ -1,6 +1,7 @@
 import { Action } from '@ngrx/store';
 
 import { AllUserData } from '../../../../shared/to/all-user-data';
+import { Message } from '../../../../shared/model/message';
 
 
 export const LOAD_USER_DATA_ACTION = 'LOAD_USER_DATA_ACTION';
@@ -40,4 +41,10 @@ export const SEND_NEW_MESSAGE_ACTION = 'SEND_NEW_MESSAGE_ACTION';
 export class SendNewMessageAction implements Action {
   readonly type = SEND_NEW_MESSAGE_ACTION;
   constructor(public payload: MessageToBeSendPayload) { }
+}
+
+export const NEW_MESSAGES_RECEIVED_ACTION = 'NEW_MESSAGES_RECEIVED_ACTION';
+export class NewMessagesReceiveAction implements Action {
+  readonly type = NEW_MESSAGES_RECEIVED_ACTION;
+  constructor(private payload: Message[]) { }
 }
