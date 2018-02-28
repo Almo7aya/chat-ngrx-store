@@ -31,7 +31,7 @@ export class SelectCurrenUserAction implements Action {
 }
 
 
-export interface MessageToBeSend {
+export interface MessageToBeSendPayload {
   text: string;
   threadId: number;
   participantId: number;
@@ -39,5 +39,5 @@ export interface MessageToBeSend {
 export const SEND_NEW_MESSAGE_ACTION = 'SEND_NEW_MESSAGE_ACTION';
 export class SendNewMessageAction implements Action {
   readonly type = SEND_NEW_MESSAGE_ACTION;
-  constructor(public payload: MessageToBeSend) { }
+  constructor(public payload: MessageToBeSendPayload) { }
 }

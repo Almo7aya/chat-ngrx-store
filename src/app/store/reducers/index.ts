@@ -10,6 +10,9 @@ import { Participant } from '../../../../shared/model/participant';
 import { SELECT_CURRENT_USER_ACTION, SelectCurrenUserAction, SEND_NEW_MESSAGE_ACTION, SendNewMessageAction } from '../actions/index';
 import { Message } from '../../../../shared/model/message';
 
+
+const uuid = require('uuid/V4');
+
 const uiStateReducer: ActionReducer<UiState> =
   (state: UiState, action: Action): UiState => {
 
@@ -51,7 +54,7 @@ const dataStateReducer: ActionReducer<DataState> =
           currentThread = newDataState.threads[newMessage.threadId];
 
         const message: Message = {
-          id: +Date.now().toString().slice(4),
+          id: uuid(),
           text: newMessage.text,
           threadId: newMessage.threadId,
           timestamp: Date.now(),

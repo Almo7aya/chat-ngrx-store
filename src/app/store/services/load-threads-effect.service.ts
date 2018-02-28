@@ -23,4 +23,5 @@ export class LoadThreadsEffectService {
   @Effect() selectUserAction$ = this.actions$
     .ofType(SELECT_CURRENT_USER_ACTION)
     .map((selectedUser: SelectCurrenUserAction) => new LoadUserDataAction(selectedUser.payload));
+
 }
