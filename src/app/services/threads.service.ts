@@ -6,9 +6,10 @@ import { INITIAL_DATA_STATE } from '../store/data-state';
 import { Message } from '../../../shared/model/message';
 import { MessageToBeSendPayload } from '../store/actions';
 
+import { commonHttpHeaders } from './common-http-headers';
+
 @Injectable()
 export class ThreadsService {
-
 
   constructor(private http: Http) { }
 
@@ -17,18 +18,15 @@ export class ThreadsService {
     if (!userId) {
       return Observable.of(<AllUserData>INITIAL_DATA_STATE);
     }
-    const headers = new Headers();
-    headers.append('userid', userId.toString());
-    return this.http.get('/apiv1/threads', { headers })
+    return this.http.get('/apiv1/threads', { headers: commonHttpHeaders(userId) })
       .map((res: Response) => res.json());
   }
 
   saveNewMessage(newMessage: MessageToBeSendPayload): Observable<any> {
-    const headers = new Headers();
-    headers.append('userid', newMessage.participantId.toString());
     return this.http.post(`/apiv1/threads/${newMessage.threadId}`, JSON.stringify({
       text: newMessage.text
-    }), { headers });
+    }), { headers: commonHttpHeaders(newMessage.participantId) });
+
   }
 
 }
