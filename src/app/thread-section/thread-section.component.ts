@@ -45,6 +45,8 @@ export class ThreadSectionComponent implements OnInit {
     this.currentThreadId$ = this.store
       .select(currentTheadIdSelector);
 
+    this.currentUserId$ = this.store
+      .select();
 
   }
 
