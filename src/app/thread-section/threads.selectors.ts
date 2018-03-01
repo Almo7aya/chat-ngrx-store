@@ -52,3 +52,5 @@ export const threadSummarySelector = (state: ApplicationState): ThreadSummaryVM[
 };
 
 export const currentTheadIdSelector = (state: ApplicationState): number => state.uiState.currentThreadId;
+
+export const currentUserSelector = (state: ApplicationState): number => state.uiState.userId;
