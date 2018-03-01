@@ -10,7 +10,13 @@ import { Observable } from 'rxjs/observable';
 import { ThreadSummaryVM } from './threadSummary.vm';
 import { Thread } from '../../../shared/model/thread';
 import { environment } from '../../environments/environment';
-import { userNameSelector, unReadMessagesSelector, threadSummarySelector, currentTheadIdSelector } from './threads.selectors';
+import {
+  userNameSelector,
+  unReadMessagesSelector,
+  threadSummarySelector,
+  currentTheadIdSelector,
+  currentUserSelector
+} from './threads.selectors';
 
 @Component({
   selector: 'app-thread-section',
@@ -46,17 +52,17 @@ export class ThreadSectionComponent implements OnInit {
       .select(currentTheadIdSelector);
 
     this.currentUserId$ = this.store
-      .select();
+      .select(currentUserSelector);
 
   }
 
-  onThreadSelected(selectedThreadId: number) {
+  onThreadSelected(selectedThread: { userId: number, threadId: number }) {
 
     if (!environment.production) {
-      console.log('Selected thread id => ', selectedThreadId);
+      console.log('Selected thread id => ', selectedThread);
     }
 
-    this.store.dispatch(new SelectCurrentThreadAction(selectedThreadId));
+    this.store.dispatch(new SelectCurrentThreadAction({ currentThreadId: selectedThread.threadId, currentUserId: selectedThread.userId }));
 
   }
 

@@ -13,7 +13,9 @@ export class ThreadListComponent implements OnInit {
 
   @Input() currentThreadId: number;
 
-  @Output() threadSelectedEvent = new EventEmitter<number>();
+  @Input() currentUserId: number;
+
+  @Output() threadSelectedEvent = new EventEmitter<{ threadId: number, userId: number }>();
 
   constructor() { }
 
@@ -21,5 +23,8 @@ export class ThreadListComponent implements OnInit {
 
   }
 
+  selectThread(threadId) {
+    this.threadSelectedEvent.emit({ threadId, userId: this.currentUserId });
+  }
 
 }
