@@ -23,6 +23,8 @@ export class ThreadSectionComponent implements OnInit {
   unreadMessages$: Observable<number>;
   threadSummarys$: Observable<ThreadSummaryVM[]>;
   currentThreadId$: Observable<number>;
+  currentUserId$: Observable<number>;
+
 
   constructor(private store: Store<ApplicationState>) { }
 
@@ -42,6 +44,7 @@ export class ThreadSectionComponent implements OnInit {
 
     this.currentThreadId$ = this.store
       .select(currentTheadIdSelector);
+
 
   }
 

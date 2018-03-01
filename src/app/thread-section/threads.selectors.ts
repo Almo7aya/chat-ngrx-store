@@ -45,7 +45,8 @@ export const threadSummarySelector = (state: ApplicationState): ThreadSummaryVM[
       participantNames: names.join(', '),
       lastMessage: lastMessage.text,
       id: threadIt.id,
-      timestamp: lastMessage.timestamp
+      timestamp: lastMessage.timestamp,
+      read: threadIt.id === state.uiState.currentThreadId || threadIt.participants[state.uiState.userId] === 0
     };
   });
 };

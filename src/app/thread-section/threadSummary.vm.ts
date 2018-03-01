@@ -3,4 +3,5 @@ export interface ThreadSummaryVM {
   participantNames: string;
   lastMessage: string;
   timestamp: number;
+  read: boolean;
 }

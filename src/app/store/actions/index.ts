@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 
 import { AllUserData } from '../../../../shared/to/all-user-data';
 import { Message } from '../../../../shared/model/message';
+import { UiState } from '../ui-state';
 
 
 export const LOAD_USER_DATA_ACTION = 'LOAD_USER_DATA_ACTION';
@@ -17,11 +18,15 @@ export class UserThreadLoadedAction implements Action {
   constructor(public payload: AllUserData) { }
 }
 
+export interface SelectCurrentThreadPayload {
+  currentThreadId: number;
+  currentUserId: number;
+}
 
 export const SELECT_CURRENT_THREAD_ACTION = 'SELECT_CURRENT_THREAD_ACTION';
 export class SelectCurrentThreadAction implements Action {
   readonly type = SELECT_CURRENT_THREAD_ACTION;
-  constructor(public payload: number) { }
+  constructor(public payload: SelectCurrentThreadPayload) { }
 }
 
 
@@ -43,8 +48,14 @@ export class SendNewMessageAction implements Action {
   constructor(public payload: MessageToBeSendPayload) { }
 }
 
+
+
+export interface NewMessagesReceivedPayload {
+  newMessages: Message[];
+  uiState: UiState;
+}
 export const NEW_MESSAGES_RECEIVED_ACTION = 'NEW_MESSAGES_RECEIVED_ACTION';
 export class NewMessagesReceiveAction implements Action {
   readonly type = NEW_MESSAGES_RECEIVED_ACTION;
-  constructor(private payload: Message[] = []) { }
+  constructor(public payload: NewMessagesReceivedPayload) { }
 }

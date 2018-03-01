@@ -1,8 +1,9 @@
 <div class="thread-data">
   <p>Hello user
     <b>{{userName$ | async}}</b> you have unread
-    <b>{{ unreadMessages$ | async }}</b> messages
+    <b [ngClass]='{unread: (unreadMessages$ | async) > 0}'>{{ unreadMessages$ | async }}</b> messages
   </p>
 </div>
 
-<app-thread-list [currentThreadId]='currentThreadId$ | async' [threadSummarys]='threadSummarys$ | async' (threadSelectedEvent)='onThreadSelected($event)'></app-thread-list>
+<app-thread-list [currentUserId]='currentUserId$ | async' [currentThreadId]='currentThreadId$ | async' [threadSummarys]='threadSummarys$ | async'
+  (threadSelectedEvent)='onThreadSelected($event)'></app-thread-list>

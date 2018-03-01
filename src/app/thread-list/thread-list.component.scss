@@ -24,6 +24,10 @@
         &.last-message {
             font-size: .8em;
         }
+        &.unread {
+            color: red;
+            font-weight: bold;
+        }
     }
     span {
         font-size: .9em;

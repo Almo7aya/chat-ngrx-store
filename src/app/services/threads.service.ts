@@ -28,8 +28,11 @@ export class ThreadsService {
     }), { headers: commonHttpHeaders(newMessage.participantId) });
   }
 
-  loadNewMessagesForUser(): Observable<Message[]> {
-    return;
+  loadNewMessagesForUser(userId): Observable<Message[]> {
+    return this.http.post('/apiv1/notifications/messages',
+      null,
+      { headers: commonHttpHeaders(userId) })
+      .map((res: Response) => res.json().payload);
   }
 
 }
