@@ -11,10 +11,17 @@ import {
   SELECT_CURRENT_THREAD_ACTION,
   SelectCurrentThreadAction,
   NEW_MESSAGES_RECEIVED_ACTION,
-  NewMessagesReceiveAction
+  NewMessagesReceiveAction,
+  ERROR_HAPPEN_ACTION
 } from '../actions';
 import { Participant } from '../../../../shared/model/participant';
-import { SELECT_CURRENT_USER_ACTION, SelectCurrenUserAction, SEND_NEW_MESSAGE_ACTION, SendNewMessageAction } from '../actions/index';
+import {
+  SELECT_CURRENT_USER_ACTION,
+  SelectCurrenUserAction,
+  SEND_NEW_MESSAGE_ACTION,
+  SendNewMessageAction,
+  ErrorHappenAction
+} from '../actions/index';
 import { Message } from '../../../../shared/model/message';
 
 
@@ -35,6 +42,13 @@ const uiStateReducer: ActionReducer<UiState> =
         newUiStateUser.currentThreadId = undefined;
         newUiStateUser.userId = ((<SelectCurrenUserAction>action).payload);
         return newUiStateUser;
+
+      case ERROR_HAPPEN_ACTION:
+        const nUiState = cloneDeep(state);
+        const { payload: errorMessage } = (<ErrorHappenAction>action);
+        nUiState.currentError = errorMessage;
+
+        return nUiState;
 
       default:
         return state;

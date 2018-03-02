@@ -59,3 +59,13 @@ export class NewMessagesReceiveAction implements Action {
   readonly type = NEW_MESSAGES_RECEIVED_ACTION;
   constructor(public payload: NewMessagesReceivedPayload) { }
 }
+
+
+export const ERROR_HAPPEN_ACTION = 'ERROR_HAPPEN_ACTION';
+export class ErrorHappenAction implements Action {
+
+  readonly type = ERROR_HAPPEN_ACTION;
+
+  constructor(public payload: string) { }
+
+}

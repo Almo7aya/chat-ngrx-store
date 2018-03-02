@@ -22,6 +22,7 @@ import { ScrollToBottomDirective } from './directives/scroll-to-bottom.directive
 import { WriteNewMessageEffectService } from './store/services/write-new-message-effect.service';
 import { ServerNotifactionEffectService } from './store/services/server-notifaction-effect.service';
 import { MarkMessagesAsReadEffectService } from './store/services/mark-thread-as-read-effect.service';
+import { ErrorMessagesComponent } from './error-messages/error-messages.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { MarkMessagesAsReadEffectService } from './store/services/mark-thread-as
     MessageSectionComponent,
     ThreadListComponent,
     MessageListComponent,
-    ScrollToBottomDirective
+    ScrollToBottomDirective,
+    ErrorMessagesComponent
   ],
   imports: [
     BrowserModule,
