@@ -10,11 +10,12 @@ export function apiUpdateThread(app: Application) {
 
   app.route('/apiv1/threads/:id').patch((req, res) => {
 
-    const participantId = req.headers['userid'];
+    const participantId = parseInt(req.headers['userid'].toString(), 10);
 
-    const threadId = req.params['id'];
+    const threadId = parseInt(req.params['id'], 10);
 
     const updatedProps = req.body;
+
 
     const allThreads: Thread[] = <any>_.values(dbThreads);
 
