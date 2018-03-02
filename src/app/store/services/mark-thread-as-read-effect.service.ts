@@ -11,6 +11,7 @@ export class MarkMessagesAsReadEffectService {
 
   @Effect({ dispatch: false }) markThreadAsRead$ = this.actions$
     .ofType(SELECT_CURRENT_THREAD_ACTION)
+    .debug('WILL MARK THE THREAD AS READ')
     .switchMap((selectedThread: SelectCurrentThreadAction) => this.threadService.markThreadAsRead(selectedThread.payload));
 
 }

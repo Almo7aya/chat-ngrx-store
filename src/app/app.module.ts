@@ -21,6 +21,7 @@ import { LoadThreadsEffectService } from './store/services/load-threads-effect.s
 import { ScrollToBottomDirective } from './directives/scroll-to-bottom.directive';
 import { WriteNewMessageEffectService } from './store/services/write-new-message-effect.service';
 import { ServerNotifactionEffectService } from './store/services/server-notifaction-effect.service';
+import { MarkMessagesAsReadEffectService } from './store/services/mark-thread-as-read-effect.service';
 
 
 @NgModule({
@@ -37,7 +38,10 @@ import { ServerNotifactionEffectService } from './store/services/server-notifact
     BrowserModule,
     HttpModule,
     StoreModule.forRoot(mapReducers, { initialState: INITIAL_APPLICATION_STATE }),
-    EffectsModule.forRoot([LoadThreadsEffectService, WriteNewMessageEffectService, ServerNotifactionEffectService]),
+    EffectsModule.forRoot([LoadThreadsEffectService,
+      WriteNewMessageEffectService,
+      ServerNotifactionEffectService,
+      MarkMessagesAsReadEffectService]),
     StoreDevtoolsModule.instrument({ maxAge: 50 })
   ],
   providers: [
