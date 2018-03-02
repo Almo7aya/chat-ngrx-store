@@ -80,8 +80,14 @@ const dataStateReducer: ActionReducer<DataState> =
 
       case SEND_NEW_MESSAGE_ACTION:
         const { payload: newMessage } = (<SendNewMessageAction>action);
-        const newDataState = cloneDeep<DataState>(state),
-          currentThread = newDataState.threads[newMessage.threadId];
+
+        const newDataState: DataState = {
+          participants: state.participants,
+          threads: Object.assign({}, state.threads),
+          messages: Object.assign({}, state.messages)
+        };
+
+        const currentThread = newDataState.threads[newMessage.threadId] = Object.assign({}, state.threads[newMessage.threadId]);
 
         const message: Message = {
           id: uuid(),
@@ -91,7 +97,7 @@ const dataStateReducer: ActionReducer<DataState> =
           participantId: newMessage.participantId,
         };
 
-        currentThread.messageIds.push(message.id);
+        currentThread.messageIds = [...currentThread.messageIds, message.id];
         newDataState.messages[message.id] = message;
         return newDataState;
 
@@ -103,12 +109,17 @@ const dataStateReducer: ActionReducer<DataState> =
           return state;
         }
 
-        const nDataState = cloneDeep(state);
+        const nDataState: DataState = {
+          participants: state.participants,
+          threads: Object.assign({}, state.threads),
+          messages: Object.assign({}, state.messages)
+        };
 
         newMessages.forEach(nMessage => {
 
           nDataState.messages[nMessage.id] = nMessage;
-          nDataState.threads[nMessage.threadId].messageIds.push(nMessage.id);
+          nDataState.threads[nMessage.threadId] = Object.assign({}, nDataState.threads[nMessage.threadId]);
+          nDataState.threads[nMessage.threadId].messageIds = [...nDataState.threads[nMessage.threadId].messageIds, nMessage.id];
 
           if (nMessage.threadId !== uiState.currentThreadId) {
             nDataState.threads[nMessage.threadId].participants[uiState.userId] += 1;

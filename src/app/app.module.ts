@@ -32,7 +32,7 @@ import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router
 import { RouterState } from './store/router-state';
 
 
-const metaReducers: MetaReducer<ApplicationState>[] = environment.production ? [storeFreeze] : [];
+const metaReducers: MetaReducer<ApplicationState>[] = !environment.production ? [storeFreeze] : [];
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
