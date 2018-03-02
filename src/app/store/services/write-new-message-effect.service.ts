@@ -9,7 +9,7 @@ export class WriteNewMessageEffectService {
 
   constructor(private actions$: Actions, private threadsService: ThreadsService) { }
 
-  @Effect() sendNewMessageAction$ =
+  @Effect({ dispatch: false }) sendNewMessageAction$ =
     this.actions$
       .ofType(SEND_NEW_MESSAGE_ACTION)
       .debug('SEND NEW MESSAGE')

@@ -1,7 +1,8 @@
+import { storeFreeze } from 'ngrx-store-freeze';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { StoreModule } from '@ngrx/store';
+import { StoreModule, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
@@ -23,6 +24,11 @@ import { WriteNewMessageEffectService } from './store/services/write-new-message
 import { ServerNotifactionEffectService } from './store/services/server-notifaction-effect.service';
 import { MarkMessagesAsReadEffectService } from './store/services/mark-thread-as-read-effect.service';
 import { ErrorMessagesComponent } from './error-messages/error-messages.component';
+import { environment } from '../environments/environment';
+
+
+
+const metaReducers: MetaReducer<ApplicationState>[] = !environment.production ? [storeFreeze] : [];
 
 
 @NgModule({
@@ -39,7 +45,7 @@ import { ErrorMessagesComponent } from './error-messages/error-messages.componen
   imports: [
     BrowserModule,
     HttpModule,
-    StoreModule.forRoot(mapReducers, { initialState: INITIAL_APPLICATION_STATE }),
+    StoreModule.forRoot(mapReducers, { initialState: INITIAL_APPLICATION_STATE, metaReducers }),
     EffectsModule.forRoot([LoadThreadsEffectService,
       WriteNewMessageEffectService,
       ServerNotifactionEffectService,

@@ -15,6 +15,7 @@ import 'rxjs/add/operator/skip';
 
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/interval';
+import 'rxjs/add/observable/throw';
 
 import './app/helpers/debug-observable';
 
