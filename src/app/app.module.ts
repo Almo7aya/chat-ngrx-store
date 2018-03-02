@@ -28,14 +28,15 @@ import { ErrorMessagesComponent } from './error-messages/error-messages.componen
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 
-const metaReducers: MetaReducer<ApplicationState>[] = !environment.production ? [storeFreeze] : [];
+const metaReducers: MetaReducer<ApplicationState>[] = environment.production ? [storeFreeze] : [];
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: '**', redirectTo: 'home' }
+  // { path: '**', redirectTo: 'home' }
 ];
 
 
@@ -62,6 +63,7 @@ const routes: Routes = [
       WriteNewMessageEffectService,
       ServerNotifactionEffectService,
       MarkMessagesAsReadEffectService]),
+    StoreRouterConnectingModule,
     StoreDevtoolsModule.instrument({ maxAge: 50 })
   ],
   providers: [

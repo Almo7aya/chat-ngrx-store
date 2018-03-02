@@ -23,6 +23,7 @@ import {
   ErrorHappenAction
 } from '../actions/index';
 import { Message } from '../../../../shared/model/message';
+import { routerReducer } from '@ngrx/router-store';
 
 
 const uuid = require('uuid/V4');
@@ -125,5 +126,6 @@ const dataStateReducer: ActionReducer<DataState> =
 
 export const mapReducers: ActionReducerMap<ApplicationState> = {
   uiState: uiStateReducer,
-  dataState: dataStateReducer
+  dataState: dataStateReducer,
+  routerState: routerReducer
 };
