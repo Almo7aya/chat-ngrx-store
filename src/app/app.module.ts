@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import { StoreModule, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, RouterStateSnapshot } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { UserSelectionComponent } from './user-selection/user-selection.component';
@@ -28,7 +28,8 @@ import { ErrorMessagesComponent } from './error-messages/error-messages.componen
 import { environment } from '../environments/environment';
 import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { StoreRouterConnectingModule, RouterStateSerializer } from '@ngrx/router-store';
+import { RouterState } from './store/router-state';
 
 
 const metaReducers: MetaReducer<ApplicationState>[] = environment.production ? [storeFreeze] : [];
@@ -39,6 +40,19 @@ const routes: Routes = [
   // { path: '**', redirectTo: 'home' }
 ];
 
+
+class CustomSerializer implements RouterStateSerializer<RouterState> {
+  serialize(routerState: RouterStateSnapshot): RouterState {
+    let route = routerState.root;
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+    const { url, root: { queryParams } } = routerState;
+    const { params } = route;
+    return { url, params, queryParams };
+
+  }
+}
 
 
 @NgModule({
@@ -67,7 +81,8 @@ const routes: Routes = [
     StoreDevtoolsModule.instrument({ maxAge: 50 })
   ],
   providers: [
-    ThreadsService
+    ThreadsService,
+    { provide: RouterStateSerializer, useClass: CustomSerializer }
   ],
   bootstrap: [AppComponent]
 })
