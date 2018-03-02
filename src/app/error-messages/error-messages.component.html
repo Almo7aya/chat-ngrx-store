@@ -1,3 +1,6 @@
-<p>
-  error-messages works!
-</p>
+<div class="error-holder">
+  <div class='alert alert-danger'>
+    <a class="close" aria-label="close" (click)="close()">&times;</a>
+    {{(message$ | async)}}
+  </div>
+</div>

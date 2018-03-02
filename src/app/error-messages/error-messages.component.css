@@ -1,0 +1,12 @@
+:host {
+    height: 60px;
+    display: block;
+}
+
+div.error-holder {
+    display: none;
+}
+
+:host-context(.show) div.error-holder {
+    display: block;
+}
