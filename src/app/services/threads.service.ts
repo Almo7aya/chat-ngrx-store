@@ -7,6 +7,7 @@ import { Message } from '../../../shared/model/message';
 import { MessageToBeSendPayload } from '../store/actions';
 
 import { commonHttpHeaders } from './common-http-headers';
+import { SelectCurrentThreadPayload } from '../store/actions/index';
 
 @Injectable()
 export class ThreadsService {
@@ -33,6 +34,13 @@ export class ThreadsService {
       null,
       { headers: commonHttpHeaders(userId) })
       .map((res: Response) => res.json().payload);
+  }
+
+  markThreadAsRead(selectedThread: SelectCurrentThreadPayload): Observable<any> {
+    const { currentThreadId, currentUserId } = selectedThread;
+    return this.http.patch(`/apiv1/threads/${currentThreadId}`,
+      { read: true },
+      { headers: commonHttpHeaders(currentUserId) });
   }
 
 }
