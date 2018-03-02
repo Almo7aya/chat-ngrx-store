@@ -4,6 +4,7 @@ import { ApplicationState } from '../store/application-state';
 import { ThreadSummaryVM } from './threadSummary.vm';
 import { Thread } from '../../../shared/model/thread';
 
+const deepFreeze = require('deep-freeze-strict');
 
 export const userNameSelector = (state: ApplicationState): string => {
   const { userId: currentUserId } = state.uiState;
@@ -18,7 +19,7 @@ export const userNameSelector = (state: ApplicationState): string => {
     return;
   }
 
-  return participant.name;
+  return deepFreeze(participant.name);
 
 };
 
@@ -27,8 +28,8 @@ export const unReadMessagesSelector = (state: ApplicationState): number => {
   if (!currentUserId) {
     return 0;
   }
-  return values<Thread>(state.dataState.threads)
-    .reduce((acc, threadIt: Thread) => acc + (threadIt.participants[currentUserId] || 0), 0);
+  return deepFreeze(values<Thread>(state.dataState.threads)
+    .reduce((acc, threadIt: Thread) => acc + (threadIt.participants[currentUserId] || 0), 0));
 };
 
 export const threadSummarySelector = (state: ApplicationState): ThreadSummaryVM[] => {
@@ -36,7 +37,7 @@ export const threadSummarySelector = (state: ApplicationState): ThreadSummaryVM[
   if (!thread.length) {
     return;
   }
-  return thread.map((threadIt): ThreadSummaryVM => {
+  return deepFreeze(thread.map((threadIt): ThreadSummaryVM => {
     const names = Object.keys(threadIt.participants)
       .map(participantId => state.dataState.participants[participantId].name);
     const lastMessageId = last<number>(threadIt.messageIds);
@@ -48,7 +49,7 @@ export const threadSummarySelector = (state: ApplicationState): ThreadSummaryVM[
       timestamp: lastMessage.timestamp,
       read: threadIt.id === state.uiState.currentThreadId || threadIt.participants[state.uiState.userId] === 0
     };
-  });
+  }));
 };
 
 export const currentTheadIdSelector = (state: ApplicationState): number => state.uiState.currentThreadId;
