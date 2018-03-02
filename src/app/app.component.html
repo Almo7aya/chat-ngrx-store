@@ -1,32 +1,25 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
-  <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar  navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand">ChatWith ngrx/store</a>
+      <div class=" navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" [routerLinkActive]='"active"' [routerLink]='["home"]' href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLinkActive]='"active"' [routerLink]='["about"]' href="#">About</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 
-
   <div class="container">
 
-    <app-error-messages></app-error-messages>
+    <router-outlet></router-outlet>
 
-    <div class="row">
-
-      <div class="col col-md-5 threads-container">
-
-        <app-user-selection></app-user-selection>
-        <app-thread-section></app-thread-section>
-
-      </div>
-
-      <div class="col offset-md-1 col-md-6 messages-container">
-
-        <app-message-section></app-message-section>
-
-      </div>
-
-    </div>
   </div>
 
 </div>

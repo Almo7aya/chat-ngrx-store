@@ -5,6 +5,7 @@ import { HttpModule } from '@angular/http';
 import { StoreModule, MetaReducer } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { UserSelectionComponent } from './user-selection/user-selection.component';
@@ -25,10 +26,18 @@ import { ServerNotifactionEffectService } from './store/services/server-notifact
 import { MarkMessagesAsReadEffectService } from './store/services/mark-thread-as-read-effect.service';
 import { ErrorMessagesComponent } from './error-messages/error-messages.component';
 import { environment } from '../environments/environment';
-
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
 
 
 const metaReducers: MetaReducer<ApplicationState>[] = !environment.production ? [storeFreeze] : [];
+
+const routes: Routes = [
+  { path: 'home', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
+  { path: '**', redirectTo: 'home' }
+];
+
 
 
 @NgModule({
@@ -40,11 +49,14 @@ const metaReducers: MetaReducer<ApplicationState>[] = !environment.production ? 
     ThreadListComponent,
     MessageListComponent,
     ScrollToBottomDirective,
-    ErrorMessagesComponent
+    ErrorMessagesComponent,
+    HomeComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    RouterModule.forRoot(routes, { useHash: true }),
     StoreModule.forRoot(mapReducers, { initialState: INITIAL_APPLICATION_STATE, metaReducers }),
     EffectsModule.forRoot([LoadThreadsEffectService,
       WriteNewMessageEffectService,
