@@ -62,9 +62,16 @@ const dataStateReducer: ActionReducer<DataState> =
     switch (action.type) {
 
       case SELECT_CURRENT_THREAD_ACTION:
-        const cnDataState = cloneDeep(state);
+        const cnDataState: DataState = {
+          messages: state.messages,
+          participants: state.participants,
+          threads: Object.assign({}, state.threads)
+        };
         const { currentThreadId, currentUserId } = (<SelectCurrentThreadAction>action).payload;
 
+        cnDataState.threads[currentThreadId] = Object.assign({}, state.threads[currentThreadId]);
+
+        cnDataState.threads[currentThreadId].participants = Object.assign({}, state.threads[currentThreadId].participants);
         cnDataState.threads[currentThreadId].participants[currentUserId] = 0;
 
         return cnDataState;
@@ -122,6 +129,7 @@ const dataStateReducer: ActionReducer<DataState> =
           nDataState.threads[nMessage.threadId].messageIds = [...nDataState.threads[nMessage.threadId].messageIds, nMessage.id];
 
           if (nMessage.threadId !== uiState.currentThreadId) {
+            nDataState.threads[nMessage.threadId].participants = clone(nDataState.threads[nMessage.threadId].participants);
             nDataState.threads[nMessage.threadId].participants[uiState.userId] += 1;
           }
 

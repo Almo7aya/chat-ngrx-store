@@ -1,8 +1,8 @@
 Arguments: 
-  C:\Users\Ali Almohaya\scoop\apps\nodejs\current\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add ngrx-store-freeze --dev
+  C:\Users\Ali Almohaya\scoop\apps\nodejs\current\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add reselelct
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Ali Almohaya\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit;C:\Program Files (x86)\Yarn\bin;C:\Users\Ali Almohaya\scoop\apps\nodejs\current\bin;C:\Users\Ali Almohaya\scoop\apps\nodejs\current;C:\Users\Ali Almohaya\scoop\shims;C:\Users\Ali Almohaya\AppData\Local\Microsoft\WindowsApps;C:\Users\Ali Almohaya\scoop\persist\yarn\bin\bin;C:\Program Files\MongoDB\Server\3.4\bin;C:\MinGW\bin;C:\Users\Ali Almohaya\AppData\Local\Yarn\config\global\node_modules\.bin;C:\Program Files\Microsoft VS Code\bin
+  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Ali Almohaya\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit;C:\Program Files (x86)\Yarn\bin;C:\Program Files\Git\cmd;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Ali Almohaya\scoop\apps\nodejs\current\bin;C:\Users\Ali Almohaya\scoop\apps\nodejs\current;C:\Users\Ali Almohaya\scoop\shims;C:\Users\Ali Almohaya\AppData\Local\Microsoft\WindowsApps;C:\Users\Ali Almohaya\scoop\persist\yarn\bin\bin;C:\Program Files\MongoDB\Server\3.4\bin;C:\MinGW\bin;C:\Users\Ali Almohaya\AppData\Local\Yarn\config\global\node_modules\.bin;C:\Program Files\Microsoft VS Code\bin
 
 Yarn version: 
   1.5.1
@@ -39,6 +39,7 @@ npm manifest:
       "@angular/platform-browser-dynamic": "^5.0.0",
       "@angular/router": "^5.0.0",
       "@ngrx/effects": "^5.1.0",
+      "@ngrx/router-store": "^5.0.1",
       "@ngrx/store": "^5.1.0",
       "@ngrx/store-devtools": "^5.1.0",
       "@types/express": "^4.11.1",
@@ -68,6 +69,7 @@ npm manifest:
       "karma-coverage-istanbul-reporter": "^1.2.1",
       "karma-jasmine": "~1.1.0",
       "karma-jasmine-html-reporter": "^0.2.2",
+      "ngrx-store-freeze": "^0.2.1",
       "protractor": "~5.1.2",
       "ts-node": "~3.2.0",
       "tslint": "~5.7.0",
@@ -242,6 +244,10 @@ Lockfile:
   "@ngrx/effects@^5.1.0":
     version "5.1.0"
     resolved "https://registry.yarnpkg.com/@ngrx/effects/-/effects-5.1.0.tgz#cef84576b2d0333f19188aedfe156fd301bff70a"
+  
+  "@ngrx/router-store@^5.0.1":
+    version "5.0.1"
+    resolved "https://registry.yarnpkg.com/@ngrx/router-store/-/router-store-5.0.1.tgz#db872327bb958a2ebf296734c97de68672ec628a"
   
   "@ngrx/store-devtools@^5.1.0":
     version "5.1.0"
@@ -1586,6 +1592,10 @@ Lockfile:
   deep-extend@~0.4.0:
     version "0.4.2"
     resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.4.2.tgz#48b699c27e334bf89f10892be432f6e4c7d34a7f"
+  
+  deep-freeze-strict@^1.1.1:
+    version "1.1.1"
+    resolved "https://registry.yarnpkg.com/deep-freeze-strict/-/deep-freeze-strict-1.1.1.tgz#77d0583ca24a69be4bbd9ac2fae415d55523e5b0"
   
   default-require-extensions@^1.0.0:
     version "1.0.0"
@@ -3766,6 +3776,12 @@ Lockfile:
   negotiator@0.6.1:
     version "0.6.1"
     resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
+  
+  ngrx-store-freeze@^0.2.1:
+    version "0.2.1"
+    resolved "https://registry.yarnpkg.com/ngrx-store-freeze/-/ngrx-store-freeze-0.2.1.tgz#04fb29db33cafda0f2d6ea32adeaac4891b1b27b"
+    dependencies:
+      deep-freeze-strict "^1.1.1"
   
   no-case@^2.2.0:
     version "2.3.2"
@@ -6358,4 +6374,11 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.19.tgz#a4b522cd9e8b7b616a638c297d720d4c7f292f71"
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\Users\Ali Almohaya\Desktop\RX\ngrxStore\node_modules\node-sass\vendor\win32-x64-59\binding.node'
+  Error: Couldn't find package "reselelct" on the "npm" registry.
+      at new MessageError (C:\Program Files (x86)\Yarn\lib\cli.js:186:110)
+      at NpmResolver.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:51625:15)
+      at Generator.next (<anonymous>)
+      at step (C:\Program Files (x86)\Yarn\lib\cli.js:98:30)
+      at C:\Program Files (x86)\Yarn\lib\cli.js:109:13
+      at <anonymous>
+      at process._tickCallback (internal/process/next_tick.js:118:7)
