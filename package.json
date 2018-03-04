@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "server": "./node_modules/.bin/ts-node ./src/server/server.ts",
-    "server2:dev": "./node_modules/.bin/ts-node-dev ./src/server2/server.ts"
+    "server2:dev": "nodemon --exec ./node_modules/.bin/ts-node ./src/server2/server.ts"
   },
   "private": true,
   "dependencies": {
