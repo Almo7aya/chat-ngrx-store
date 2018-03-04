@@ -44,19 +44,16 @@ export const messageSelector =
       return;
     }
 
-    return currentTheard.messageIds.map((messageId): MessageVM => {
+    const messages = currentTheard.messageIds.map((messageId) => state.dataState.messages[messageId]);
 
-      const message: Message = state.dataState.messages[messageId];
-
+    return messages.map((message): MessageVM => {
       return {
         id: message.id,
         timestamp: message.timestamp,
-        text: message.text,
-        participantName: state.dataState.participants[message.participantId].name
+        participantName: state.dataState.participants[message.participantId].name,
+        text: message.text
       };
-
     });
-
 
   };
 
