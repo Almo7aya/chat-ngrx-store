@@ -40,8 +40,7 @@ export const messageSelector =
 
     const participants = getParticipants(state);
 
-    return messages.map(message => messageToMessageVM(participants, message));
-    // return messages.map(messageToMessageVM.bind(null, state)); // carring
+    return mapMessagesToMessagesVM(participants, messages);
 
   };
 
@@ -58,11 +57,15 @@ function getParticipants(state: ApplicationState) {
   return state.dataState.participants;
 }
 
-function messageToMessageVM(participant: { [key: number]: Participant }, message: Message): MessageVM {
+function mapMessageToMessageVM(participant: { [key: number]: Participant }, message: Message): MessageVM {
   return {
     id: message.id,
     timestamp: message.timestamp,
     participantName: participant[message.participantId].name,
     text: message.text
   };
+}
+
+function mapMessagesToMessagesVM(participants: { [key: number]: Participant }, messages: Message[]) {
+  return messages.map(message => mapMessageToMessageVM(participants, message));
 }
