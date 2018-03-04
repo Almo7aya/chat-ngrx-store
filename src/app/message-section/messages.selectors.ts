@@ -46,18 +46,17 @@ export const messageSelector =
 
     const messages = currentTheard.messageIds.map((messageId) => state.dataState.messages[messageId]);
 
-    return messages.map((message): MessageVM => {
-      return {
-        id: message.id,
-        timestamp: message.timestamp,
-        participantName: state.dataState.participants[message.participantId].name,
-        text: message.text
-      };
-    });
+    return messages.map(messageToMessageVM.bind(null, state)); // carring
+    // return messages.map(messageToMessageVM.bind(null, state)); // carring
 
   };
 
 
-function messagesGetter(state: ApplicationState) {
-
+function messageToMessageVM(state: ApplicationState, message: Message): MessageVM {
+  return {
+    id: message.id,
+    timestamp: message.timestamp,
+    participantName: state.dataState.participants[message.participantId].name,
+    text: message.text
+  };
 }
