@@ -1,9 +1,10 @@
 import { ApplicationState } from '../store/application-state';
-import { values, keys, partial } from 'lodash';
+import { values, keys, partial, memoize } from 'lodash';
 
 import { MessageVM } from './message.vm';
 import { Participant } from '../../../shared/model/participant';
 import { Message } from '../../../shared/model/message';
+import { createSelector } from 'reselect';
 
 
 export const participantNamesSelector =
@@ -29,26 +30,13 @@ export const participantNamesSelector =
   };
 
 
-export const messageSelector =
-  (state: ApplicationState): MessageVM[] => {
-    const { currentThreadId } = state.uiState;
-    if (!currentThreadId) {
-      return;
-    }
-
-    const messages = getMessagesFromThread(state);
-
-    const participants = getParticipants(state);
-
-    return mapMessagesToMessagesVM(participants, messages);
-
-  };
+export const messageSelector = createSelector(getParticipants, getMessagesFromThread, mapMessagesToMessagesVM);
 
 
 function getMessagesFromThread(state: ApplicationState): Message[] {
   const currentTheard = state.dataState.threads[state.uiState.currentThreadId];
   if (!currentTheard) {
-    return;
+    return null;
   }
   return currentTheard.messageIds.map((messageId) => state.dataState.messages[messageId]);
 }
@@ -57,15 +45,24 @@ function getParticipants(state: ApplicationState) {
   return state.dataState.participants;
 }
 
-function mapMessageToMessageVM(participant: { [key: number]: Participant }, message: Message): MessageVM {
+
+function mapMessagesToMessagesVM(participants: { [key: number]: Participant }, messages: Message[]) {
+  if (!messages) { return; }
+  return messages.map(message => {
+
+    const participantName = participants[message.participantId].name;
+
+    return mapMessageToMessageVM(participantName, message);
+  });
+}
+
+const mapMessageToMessageVM = memoize((participantName: string, message: Message): MessageVM => {
   return {
     id: message.id,
     timestamp: message.timestamp,
-    participantName: participant[message.participantId].name,
+    participantName: participantName,
     text: message.text
   };
-}
-
-function mapMessagesToMessagesVM(participants: { [key: number]: Participant }, messages: Message[]) {
-  return messages.map(message => mapMessageToMessageVM(participants, message));
-}
+},
+  (participantName: string, message: Message) => message.id + participantName
+);
