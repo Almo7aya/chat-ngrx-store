@@ -1,5 +1,5 @@
 import { Application, Response, Request } from 'express';
-import { getThreadsByParticipantId } from '../persistence/getThreadsByParticipantId';
+import { getDbThreadsByParticipantId } from '../persistence/getDbThreadsByParticipantId';
 
 export const apiGetUserThreads = (app: Application) => {
 
@@ -7,7 +7,7 @@ export const apiGetUserThreads = (app: Application) => {
 
     const participantId = 1; // just for now
 
-    const participantThreads = getThreadsByParticipantId(participantId);
+    const participantThreads = getDbThreadsByParticipantId(participantId);
 
     res.writeHead(200, { 'Content-Type': 'text/plan' });
     res.end('Its working');
